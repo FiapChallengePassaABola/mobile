@@ -5,7 +5,7 @@ import BackgroundScreen from '../components/BackgroundScreen'
 const home = () => {
   return (
     <BackgroundScreen>
-      <Text>Teste de display de texo</Text>
+      <Text>Inicio</Text>
     </BackgroundScreen>
       
     
