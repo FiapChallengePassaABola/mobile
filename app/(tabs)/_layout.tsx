@@ -4,8 +4,7 @@ import {Tabs} from 'expo-router'
 
 type propsTab = {
   focused: boolean,
-  icon: object,
-  title: string
+  icon: object
 }
 
 const icons = {
@@ -51,9 +50,10 @@ const _layout = () => {
       },
       tabBarStyle:{
         backgroundColor: '#118C65',
-        height: 66,
+        height: 105,
+        justifyContent: 'center',
+        alignItems: 'center',
         position: 'absolute'
-        
       }
     }}
     >
