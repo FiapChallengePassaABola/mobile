@@ -33,10 +33,6 @@ const Tabicon = ({focused, icon}:propsTab)=>{
 }
 }
 
-
-
-
-
 const _layout = () => {
   return (
     <Tabs
