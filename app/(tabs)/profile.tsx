@@ -1,11 +1,14 @@
 import { View, Text } from 'react-native'
+import BackgroundScreen from '../components/BackgroundScreen'
 import React from 'react'
 
 const profile = () => {
   return (
-    <View>
-      <Text>Perfil</Text>
-    </View>
+    <BackgroundScreen>
+      <View>
+        <Text>Perfil</Text>
+      </View>
+    </BackgroundScreen>
   )
 }
 
