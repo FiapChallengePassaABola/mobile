@@ -1,16 +1,19 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, ImageSourcePropType } from 'react-native'
 import React from 'react'
 import {Tabs} from 'expo-router'
 
 type propsTab = {
   focused: boolean,
-  icon: object
+  icon: ImageSourcePropType
 }
 
-const icons = {
+export const icons = {
   home: require('../../assets/icons/logo.png'),
   profile: require('../../assets/icons/profile.png'),
-  workout: require('../../assets/icons/workout.png')
+  workout: require('../../assets/icons/workout.png'),
+  config: require('../../assets/icons/config.png'),
+  addnew: require('../../assets/icons/addnew.png'),
+  back: require('../../assets/icons/back.png')
 }
 
 const Tabicon = ({focused, icon}:propsTab)=>{
