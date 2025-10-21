@@ -10,7 +10,7 @@ type treinoProps = {
 
 const Treino = ({DATA}:{DATA:treinoProps[]}  ) => {
   const renderItem = ({item}:{item:treinoProps})=>(
-    <View>
+    <View className='w-56 h-36 bg-primaria rounded-xl p-4 mx-5'>
       <Text>{item.titulo}</Text>
       <Text>{item.descricao}</Text>
     </View>
@@ -21,6 +21,7 @@ const Treino = ({DATA}:{DATA:treinoProps[]}  ) => {
     renderItem={renderItem}
     keyExtractor={item => item.titulo}
     horizontal={true}
+    className='flex gap-10 '
     />
   )
 }

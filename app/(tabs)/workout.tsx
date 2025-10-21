@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { conducao, finalizacoes, passes } from "../../data/data";
 import ActionIcon from "../components/ActionIcon";
 import BackgroundScreen from "../components/BackgroundScreen";
@@ -12,13 +12,26 @@ const workout = () => {
   };
   return (
     <BackgroundScreen>
-      <View className="w-full flex p-6 items-end ">
-        <ActionIcon icon={icons.config} onPress={funcao} />
-      </View>
-      <Text className="color-white text-6xl font-bold">Treinos</Text>
-      <Treino DATA={passes} />
-      <Treino DATA={finalizacoes} />
-      <Treino DATA={conducao} />
+      <ScrollView>
+        <View className="w-full flex p-6 items-end ">
+          <ActionIcon icon={icons.addnew} onPress={funcao} />
+        </View>
+        <Text className="color-white text-6xl font-bold w-full text-center">Treinos</Text>
+        <View className="flex-1 justify-evenly items-center w-screen gap-2 p-2">
+          <Text className="color-white font-semibold text-2xl w-[90%]   text-start ">
+            Finalizaçao
+          </Text>
+          <Treino DATA={finalizacoes} />
+          <Text className="color-white font-semibold text-2xl w-[90%]   text-start ">
+            Passe
+          </Text>
+          <Treino DATA={passes} />
+          <Text className="color-white font-semibold text-2xl w-[90%]   text-start ">
+            Condução
+          </Text>
+          <Treino DATA={conducao} />
+        </View>
+      </ScrollView>
     </BackgroundScreen>
   );
 };
