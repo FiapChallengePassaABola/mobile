@@ -12,7 +12,7 @@ export const icons = {
   profile: require('../../assets/icons/profile.png'),
   workout: require('../../assets/icons/workout.png'),
   config: require('../../assets/icons/config.png'),
-  addnew: require('../../assets/icons/addnew.png'),
+  addnew: require('../../assets/icons/addnew1.png'),
   back: require('../../assets/icons/back.png')
 }
 
