@@ -10,8 +10,10 @@ import {
   View,
 } from "react-native";
 import ActionButton from "../components/ActionButton";
+import ActionIcon from "../components/ActionIcon";
 import BackgroundScreen from "../components/BackgroundScreen";
 import UnderScore from "../components/UnderScore";
+import { icons } from "./_layout";
 
 type streakType = {
   streak: number;
@@ -66,7 +68,10 @@ const Workout = ({ title, duration, count }: workoutType) => {
       <TouchableWithoutFeedback onPress={eventHandler}>
         <View className="h-full justify-center">
           <View className="size-12 border-2 border-white rounded-full flex items-center justify-center pl-1">
-            <Image source={require("../../assets/icons/play.png")} className=""/>
+            <Image
+              source={require("../../assets/icons/play.png")}
+              className=""
+            />
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -77,24 +82,36 @@ const Workout = ({ title, duration, count }: workoutType) => {
 const home = () => {
   return (
     <BackgroundScreen>
-        <ScrollView contentContainerStyle={{flexGrow:1, paddingBottom:150}} className="w-screen">
-          <Streak streak={2} />
-          <View className=" w-screen items-center gap-5 p-4">
-            <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">
-              Treino de hoje
-            </Text>
-            <UnderScore />
-            <Workout title="Passes longos" duration={50} count={5} />
-            <View className="w-[70%] items-end flex justify-center">
-              <ActionButton text={"mudar"} />
-            </View>
-              <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">Social</Text>
-              <UnderScore />
-              <View className="w-72 h-56 bg-white rounded-xl mt-3">
-                <Text>CIASDOSJO</Text>
-              </View>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 150 }}
+        className="w-screen"
+      >
+        <ActionIcon
+          icon={icons.config}
+          onPress={() => {
+            return 1 + 1;
+          }}
+          style="w-full flex items-center justify-end p-4 flex-row"
+        />
+        <Streak streak={2} />
+        <View className=" w-screen items-center gap-5 p-4">
+          <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">
+            Treino de hoje
+          </Text>
+          <UnderScore />
+          <Workout title="Passes longos" duration={50} count={5} />
+          <View className="w-[70%] items-end flex justify-center">
+            <ActionButton text={"mudar"} />
           </View>
-        </ScrollView>
+          <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">
+            Social
+          </Text>
+          <UnderScore />
+          <View className="w-72 h-56 bg-white rounded-xl mt-3">
+            <Text>CIASDOSJO</Text>
+          </View>
+        </View>
+      </ScrollView>
     </BackgroundScreen>
   );
 };

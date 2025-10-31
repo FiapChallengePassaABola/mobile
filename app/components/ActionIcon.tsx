@@ -4,15 +4,15 @@ import { Button } from '@react-navigation/elements'
 
 type actionIconType={
     icon: ImageSourcePropType,
-    onPress: FC
-    
+    onPress: FC,
+    style?:string
 }
 
-const ActionIcon = ({icon, onPress}:actionIconType) => {
+const ActionIcon = ({icon, onPress, style}:actionIconType) => {
 
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} className={style}>
       <Image source={icon}/>
     </TouchableOpacity>
   )
