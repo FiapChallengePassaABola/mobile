@@ -4,6 +4,7 @@ import {
   Alert,
   Image,
   ImageBackground,
+  ScrollView,
   Text,
   TouchableWithoutFeedback,
   View,
@@ -76,21 +77,24 @@ const Workout = ({ title, duration, count }: workoutType) => {
 const home = () => {
   return (
     <BackgroundScreen>
-      <Streak streak={2} />
-      <View className="flex-1 w-screen items-center gap-5 p-4">
-        <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">
-          Treino de hoje
-        </Text>
-        <UnderScore />
-        <Workout title="Passes longos" duration={50} count={5} />
-        <View className="w-[70%] items-end flex justify-center">
-          <ActionButton text={"mudar"} />
-        </View>
-        <Text className="color-white text-4xl font-semibold mt-5w -[90%] text-center">Social</Text>
-        <UnderScore />
-        <View className="w-72 h-56 bg-white rounded-xl mt-3"></View>
-      </View>
-  
+        <ScrollView contentContainerStyle={{flexGrow:1, paddingBottom:150}} className="w-screen">
+          <Streak streak={2} />
+          <View className=" w-screen items-center gap-5 p-4">
+            <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">
+              Treino de hoje
+            </Text>
+            <UnderScore />
+            <Workout title="Passes longos" duration={50} count={5} />
+            <View className="w-[70%] items-end flex justify-center">
+              <ActionButton text={"mudar"} />
+            </View>
+              <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">Social</Text>
+              <UnderScore />
+              <View className="w-72 h-56 bg-white rounded-xl mt-3">
+                <Text>CIASDOSJO</Text>
+              </View>
+          </View>
+        </ScrollView>
     </BackgroundScreen>
   );
 };

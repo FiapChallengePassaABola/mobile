@@ -13,7 +13,7 @@ const workout = () => {
   };
   return (
     <BackgroundScreen>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{flexGrow:1, paddingBottom:150}} className="w-screen">
         <View className="w-full flex items-center justify-end p-4 flex-row gap-4">
           <ActionIcon icon={icons.addnew} onPress={funcao} />
           <ActionIcon icon={icons.config} onPress={funcao}/>
