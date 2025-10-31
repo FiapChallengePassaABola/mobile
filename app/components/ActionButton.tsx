@@ -1,12 +1,14 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 
-const ActionButton = ({text}:{text:string}) => {
+const ActionButton = ({ text }: { text: string }) => {
   return (
-    <TouchableOpacity className='w-auto border border-white px-2 rounded-full flex justify-center items-center' style={{minWidth:65}}>
-        <Text className='color-white text-center w-full'>{text}</Text>
+    <TouchableOpacity onPress={()=>{}}>
+      <View className="w-auto border border-white px-5 rounded-full flex justify-center items-center min-w-16">
+        <Text className="color-white text-center w-full">{text}</Text>
+      </View>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default ActionButton
+export default ActionButton;
