@@ -43,7 +43,7 @@ const Workout = ({ title, duration, count }: workoutType) => {
     Alert.alert("Quer mesmo começar o treino?");
   };
   return (
-    <LinearGradient colors={['rgba(162, 73, 185, 0.65)', 'rgba(183, 109, 202, 0.74)']} locations={[0.17, 1]} start={{x:0,y:0}} end={{x:0, y:1}} className="w-80 h-20 justify-center flex-row" style={{borderRadius:50}}>
+    <LinearGradient colors={['rgba(162, 73, 185, 0.65)', 'rgba(183, 109, 202, 0.74)']} locations={[0.17, 1]} start={{x:0,y:0}} end={{x:0, y:1}} className="w-[22rem] h-20 justify-center flex-row px-4" style={{borderRadius:50}}>
       <View className="flex justify-center  items-start w-[70%] gap-1">
         <Text className="color-white text-2xl font-medium">{title}</Text>
         <View className="flex-row justify-start w-full gap-10">
