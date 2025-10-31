@@ -26,17 +26,17 @@ type workoutType = {
 
 const Streak = ({ streak }: streakType) => {
   return (
-    <View className="flex justify-center  items-center w-screen h-1/3">
+    <View className="flex items-center w-screen h-1/3 ">
       <ImageBackground
         source={require("../../assets/icons/streak.png")}
-        className="flex justify-center items-center text-center  absolute size-48"
+        className="flex justify-center items-center text-center absolute size-56 "
       >
-        <Text className="text-6xl color-white font-semibold mt-4 w-32 text-center overflow-hidden">
+        <Text className="text-6xl color-white font-semibold mt-10  w-32 text-center ">
           {streak}
         </Text>
       </ImageBackground>
-      <View className="bg-terciaria w-72 h-16 justify-center items-center rounded-[30px] mt-40">
-        <Text className="color-white text-3xl font-bold">Sequência atual</Text>
+      <View className="bg-terciaria w-80 h-20 justify-center  items-center rounded-[30px] mt-44">
+        <Text className="color-white text-4xl font-bold">Sequência atual</Text>
       </View>
     </View>
   );
@@ -83,7 +83,7 @@ const home = () => {
   return (
     <BackgroundScreen>
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1, paddingBottom: 150 }}
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 175 }}
         className="w-screen"
       >
         <ActionIcon
@@ -107,8 +107,8 @@ const home = () => {
             Social
           </Text>
           <UnderScore />
-          <View className="w-72 h-56 bg-white rounded-xl mt-3">
-            <Text>CIASDOSJO</Text>
+          <View className="w-72 h-60 border-2 border-white blur-lg  rounded-xl mt-3 items-center justify-center">
+            <Text className="w-full color-white/70 text-4xl font-semibold text-center">Gráfico Social Streak</Text>
           </View>
         </View>
       </ScrollView>
