@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ActionButton from "../components/ActionButton";
 import ActionIcon from "../components/ActionIcon";
 import BackgroundScreen from "../components/BackgroundScreen";
 import { icons } from "./_layout";
@@ -27,7 +28,7 @@ const Avatar = ({
   height,
 }: avatarProps) => {
   return (
-    <View className="w-screen h-52 flex-row justify-center items-center px-4">
+    <View className="w-screen h-52 flex-row justify-center items-center px-4 ">
       <Image source={avatar} className="size-[7rem]" />
       <View className="flex flex-1 h-[70%] p-2 ml-4 justify-center">
         <Text className="color-white text-4xl font-medium">{username}</Text>
@@ -36,6 +37,9 @@ const Avatar = ({
         </Text>
         <Text className="color-white/60 text-lg">peso: {weight} kg</Text>
         <Text className="color-white/60 text-lg">altura: {height} cm</Text>
+        <View className="w-full justify-center items-start mt-5">
+          <ActionButton text="editar" />
+        </View>
       </View>
     </View>
   );
