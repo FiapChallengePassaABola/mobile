@@ -10,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ActionButton from "../components/ActionButton";
 import ActionIcon from "../components/ActionIcon";
 import BackgroundScreen from "../components/BackgroundScreen";
+import UnderScore from "../components/UnderScore";
 import { icons } from "./_layout";
 
 type avatarProps = {
@@ -74,6 +75,24 @@ const profile = () => {
               weight={user.weight}
               height={user.height}
             />
+          </View>
+          <View className="w-screen flex justify-center items-center gap-5 mt-5">
+            <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">
+              Meus status
+            </Text>
+            <UnderScore />
+            <View className="w-scrren flex-row justify-center items-center gap-10">
+              <View className="w-20 h-20 bg-primaria rounded-full items-center justify-center">
+                <Image source={icons.workout} className="size-15"/>
+              </View>
+              <View className="w-20 h-20 bg-primaria rounded-full items-center justify-center">
+                <Image source={icons.workout} className="size-15"/>
+              </View>
+              <View className="w-20 h-20 bg-primaria rounded-full items-center justify-center">
+                <Image source={icons.workout} className="size-15"/>
+              </View>
+            </View>
+            
           </View>
         </ScrollView>
       </SafeAreaView>
