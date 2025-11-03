@@ -13,7 +13,24 @@ export const icons = {
   workout: require('../../assets/icons/workout.png'),
   config: require('../../assets/icons/config.png'),
   addnew: require('../../assets/icons/addnew1.png'),
-  back: require('../../assets/icons/back.png')
+  back: require('../../assets/icons/back.png'),
+  treino:{
+    finalizacao:{
+
+    },
+    defesa:{
+
+    },
+    goleiro:{
+
+    },
+    conducao:{
+
+    },
+    passe:{
+      
+    }
+  }
 }
 
 const Tabicon = ({focused, icon}:propsTab)=>{

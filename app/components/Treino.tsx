@@ -1,6 +1,11 @@
 import { View, Text, FlatList, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
+import { useNavigation } from 'expo-router'
+import { navigate } from 'expo-router/build/global-state/routing'
+import treino from '../treino'
+import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types'
+import { TypeRoot } from '../navigation/AppNavigator'
 
 type exerciciosProps ={
   titulo:string,
@@ -9,15 +14,22 @@ type exerciciosProps ={
   repeticoes: number
 }
 
-type treinoProps = {
+export type treinoProps = {
     titulo:string,
     descricao: string,
     quantidadeExercicios: number,
     exercicios: exerciciosProps[]
     tempoTotal: number
 }
+type TreinoScreenProp = NativeStackNavigationProp<
+  TypeRoot,
+  'workout'
+>;
+
+
 
 const Treino = ({DATA}:{DATA:treinoProps[]}  ) => {
+  const navigation = useNavigation<TreinoScreenProp>()
   const renderItem = ({item}:{item:treinoProps})=>(
     <View className='w-72 h-52 rounded-[20px] mx-5 overflow-hidden'>
        <LinearGradient colors={['rgba(162, 73, 185, 0.65)', 'rgba(205, 128, 224, 0.65)']} locations={[0.16, 1]} start={{x:0,y:0}} end={{x:0, y:1}}  className='w-full h-full p-4 items-center gap-2'>
@@ -29,7 +41,7 @@ const Treino = ({DATA}:{DATA:treinoProps[]}  ) => {
             <View className='w-14 h-7 bg-terciaria rounded-full justify-center items-center'>
               <Text className='color-white text-sm'>{item.tempoTotal}min</Text>
             </View>
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=> navigation.navigate('treino',{item})}>
               <View className='border-2 border-white rounded-full w-[4.5rem] justify-center items-center flex px-2'>
                 <Text className='color-white text-sm font-medium  w-full text-center'>treinar</Text>
               </View>

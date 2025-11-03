@@ -92,7 +92,7 @@ const profile = () => {
                 <Image source={icons.workout} className="size-15"/>
               </View>
             </View>
-            
+            <Text>https://www.npmjs.com/package/react-native-calendars</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
