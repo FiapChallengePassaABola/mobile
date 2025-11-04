@@ -4,7 +4,7 @@ import { Button } from '@react-navigation/elements'
 
 type actionIconType={
     icon: ImageSourcePropType,
-    onPress: FC,
+    onPress():void,
     style?:string
 }
 

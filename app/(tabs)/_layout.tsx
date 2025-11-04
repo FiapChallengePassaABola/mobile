@@ -16,7 +16,7 @@ export const icons = {
   back: require('../../assets/icons/back.png'),
   treino:{
     finalizacao:{
-
+      icon1: require('../../assets/icons/treino/bolagol.png')
     },
     defesa:{
 
