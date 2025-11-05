@@ -1,14 +1,79 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "./(tabs)/_layout";
 import ActionIcon from "./components/ActionIcon";
 import BackgroundScreen from "./components/BackgroundScreen";
+import { treinoProps } from "./components/Treino";
 import UnderScore from "./components/UnderScore";
 import { TypeRoot } from "./navigation/AppNavigator";
 
 type WorkoutDetailsRouteProp = RouteProp<TypeRoot, "treino">;
+
+const DisplayExer = ({
+  item,
+  exercicioAtual,
+}: {
+  item: treinoProps;
+  exercicioAtual: number;
+}) => {
+  return (
+    <View className="flex-row justify-center items-center w-full h-52">
+      <View className="justify-center items-center h-44 w-[30%]">
+        <View className="bg-secundaria size-[7rem] rounded-full justify-center items-center flex">
+          <Image
+            source={icons.treino.finalizacao.icon1}
+            className="size-[5rem]"
+          />
+        </View>
+      </View>
+      <View className="justify-center items-center gap-2">
+        <Text className="color-white text-2xl font-medium">
+          {item.exercicios[exercicioAtual].titulo}
+        </Text>
+        <Text className="color-white text-4xl font-bold">
+          {exercicioAtual}/{item.exercicios.length}
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+const RepsStack = ({
+  item,
+  exercicioAtual,
+}: {
+  item: treinoProps;
+  exercicioAtual: number;
+}) => {
+  return (
+    <View className="w-full flex items-center justify-center flex-row h-44  justiy-center">
+      <View className="flex-1  items-center justify-center">
+        <Text className="color-white text-2xl font-medium">Séries</Text>
+        <View className="flex-row w-full items-center justify-center  gap-2">
+          <Image source={icons.stack} />
+          <View className="w-16 h-12 bg-white items-center justify-center flex rounded-full">
+            <Text className="color-gray-500 text-xl font-semibold">
+              {item.exercicios[exercicioAtual].series}
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View className="flex-1  items-center justify-center">
+        <Text className="color-white text-2xl font-medium">Repetições</Text>
+        <View className="flex-row w-full items-center justify-center  gap-2">
+          <Image source={icons.reps} />
+          <View className="w-16 h-12 bg-white items-center justify-center flex rounded-full">
+            <Text className="color-gray-500 text-xl font-semibold">
+              {item.exercicios[exercicioAtual].repeticoes}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
 
 const treino = () => {
   const route = useRoute<WorkoutDetailsRouteProp>();
@@ -33,24 +98,7 @@ const treino = () => {
             </Text>
             <UnderScore />
           </View>
-          <View className="flex-row justify-center items-center w-full h-52">
-            <View className="justify-center items-center h-44 w-[30%]">
-              <View className="bg-secundaria size-[7rem] rounded-full justify-center items-center flex">
-                <Image
-                  source={icons.treino.finalizacao.icon1}
-                  className="size-[5rem]"
-                />
-              </View>
-            </View>
-            <View className="justify-center items-center gap-2">
-              <Text className="color-white text-2xl font-medium">
-                {item.exercicios[exercicioAtual].titulo}
-              </Text>
-              <Text className="color-white text-4xl font-bold">
-                {exercicioAtual}/{item.exercicios.length}
-              </Text>
-            </View>
-          </View>
+          <DisplayExer item={item} exercicioAtual={exercicioAtual} />
           <View className="w-full items-center">
             <View className="w-[80%] bg-white h-56 mt-5 rounded-2xl items-center p-4">
               <Text className="w-full h-full text-start">
@@ -58,21 +106,19 @@ const treino = () => {
               </Text>
             </View>
           </View>
-          <View className="w-full flex items-center justify-center flex-row h-44 border justiy-center">
-            <View className="flex-1 border items-center justify-center">
-              <Text className="color-white text-2xl font-medium">Séries</Text>
-              <View className="flex-row w-full items-center justify-center border gap-2">
-                <Image source={icons.config}/>
-                <Text className="color-gray-500">{item.exercicios[exercicioAtual].series}</Text>
-              </View>
+          <RepsStack item={item} exercicioAtual={exercicioAtual} />
+          <View className="w-screen h-44 flex justify-center items-center">
+            <View className="w-full flex-row justify-center items-center gap-4">
+              {Array.from({ length: exercicioAtual }).map((_, i) => (
+                <View key={i} className="bg-secundaria w-14 h-4 rounded-full" />
+              ))}
+              {Array.from({ length: item.quantidadeExercicios - exercicioAtual }).map((_, i) => (
+                <View key={i} className="w-14 h-4 border-2 border-white rounded-full" />
+              ))}
             </View>
-            <View className="flex-1 border items-center justify-center">
-              <Text className="color-white text-2xl font-medium">Repetições</Text>
-              <View className="flex-row w-full items-center justify-center border gap-2">
-                <Image source={icons.config}/>
-                <Text className="color-gray-500">{item.exercicios[exercicioAtual].repeticoes}</Text>
-              </View>
-            </View>
+            <TouchableOpacity onPress={()=>setExercicioAtual(exercicioAtual+1)}>
+              <Text>Next</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>

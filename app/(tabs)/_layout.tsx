@@ -14,6 +14,8 @@ export const icons = {
   config: require('../../assets/icons/config.png'),
   addnew: require('../../assets/icons/addnew1.png'),
   back: require('../../assets/icons/back.png'),
+  stack: require('../../assets/icons/stack.png'),
+  reps: require('../../assets/icons/reps.png'),
   treino:{
     finalizacao:{
       icon1: require('../../assets/icons/treino/bolagol.png')
