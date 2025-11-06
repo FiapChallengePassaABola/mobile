@@ -6,17 +6,25 @@ import BackgroundScreen from "../components/BackgroundScreen";
 import Treino from "../components/Treino";
 import UnderScore from "../components/UnderScore";
 import { icons } from "./_layout";
+import { useNavigation } from "expo-router";
+import { TypeRoot } from "../navigation/AppNavigator";
+import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+
+
+type AddTreinoScreenProp = NativeStackNavigationProp<
+  TypeRoot,
+  'addtreino'
+>;
+
 
 const workout = () => {
-  const funcao = () => {
-    return 1 + 1;
-  };
+  const navigation = useNavigation<AddTreinoScreenProp>()
   return (
     <BackgroundScreen>
       <ScrollView contentContainerStyle={{flexGrow:1, paddingBottom:150}} className="w-screen">
         <View className="w-full flex items-center justify-end p-4 flex-row gap-4">
-          <ActionIcon icon={icons.addnew} onPress={funcao} />
-          <ActionIcon icon={icons.config} onPress={funcao}/>
+          <ActionIcon icon={icons.addnew} onPress={()=>navigation.navigate('addtreino')} />
+          <ActionIcon icon={icons.config} onPress={()=>1+1}/>
         </View>
         <View className="flex justify-center items-center gap-2">
           <Text className="color-white text-6xl font-bold w-full text-center">Treinos</Text>
