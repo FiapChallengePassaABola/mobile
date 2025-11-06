@@ -8,6 +8,7 @@ import BackgroundScreen from "./components/BackgroundScreen";
 import { treinoProps } from "./components/Treino";
 import UnderScore from "./components/UnderScore";
 import { TypeRoot } from "./navigation/AppNavigator";
+import { useNavigation } from "expo-router";
 
 type WorkoutDetailsRouteProp = RouteProp<TypeRoot, "treino">;
 
@@ -19,8 +20,8 @@ const DisplayExer = ({
   exercicioAtual: number;
 }) => {
   return (
-    <View className="flex-row justify-center items-center w-full h-52">
-      <View className="justify-center items-center h-44 w-[30%]">
+    <View className="flex-row justify-center items-center w-full h-52 border">
+      <View className="justify-center items-center h-44 w-[30%] border">
         <View className="bg-secundaria size-[7rem] rounded-full justify-center items-center flex">
           <Image
             source={icons.treino.finalizacao.icon1}
@@ -28,12 +29,12 @@ const DisplayExer = ({
           />
         </View>
       </View>
-      <View className="justify-center items-center gap-2 w-[70%] ">
-        <Text className="color-white text-2xl font-medium w-full" numberOfLines={1} ellipsizeMode='tail'>
+      <View className="justify-center items-center gap-2 w-[60%] h-44 border">
+        <Text className="color-white text-2xl font-medium text-center border w-[60%]" numberOfLines={1} ellipsizeMode='tail'>
           {item.exercicios[exercicioAtual].titulo}
         </Text>
         <Text className="color-white text-4xl font-bold">
-          {exercicioAtual}/{item.exercicios.length}
+          {exercicioAtual+1}/{item.exercicios.length}
         </Text>
       </View>
     </View>
@@ -79,6 +80,7 @@ const treino = () => {
   const route = useRoute<WorkoutDetailsRouteProp>();
   const { item } = route.params;
   const [exercicioAtual, setExercicioAtual] = useState(0);
+  const navigation = useNavigation()
 
   return (
     <BackgroundScreen>
@@ -89,7 +91,7 @@ const treino = () => {
         >
           <ActionIcon
             icon={icons.back}
-            onPress={() => setExercicioAtual(exercicioAtual - 1)}
+            onPress={() => exercicioAtual? setExercicioAtual(exercicioAtual - 1):navigation.goBack()}
             style="w-screen flex items-start justify-center p-4" 
           />
           <View className="w-screen flex justify-center items-center gap-5">
@@ -109,14 +111,14 @@ const treino = () => {
           <RepsStack item={item} exercicioAtual={exercicioAtual} />
           <View className="w-screen h-44 flex justify-center items-center gap-10">
             <View className="w-full flex-row justify-center items-center gap-4">
-              {Array.from({ length: exercicioAtual }).map((_, i) => (
+              {Array.from({ length: exercicioAtual+1}).map((_, i) => (
                 <View key={i} className="bg-secundaria w-14 h-4 rounded-full" />
               ))}
-              {Array.from({ length: item.quantidadeExercicios - exercicioAtual }).map((_, i) => (
+              {Array.from({ length: item.quantidadeExercicios - exercicioAtual -1}).map((_, i) => (
                 <View key={i} className="w-14 h-4 border-2 border-white rounded-full" />
               ))}
             </View>
-            <TouchableOpacity onPress={()=>setExercicioAtual(exercicioAtual+1)} className="w-80 h-16 bg-secundaria justify-center items-center flex rounded-2xl">
+            <TouchableOpacity onPress={()=>exercicioAtual+1==item.quantidadeExercicios?navigation.goBack():setExercicioAtual(exercicioAtual+1)} className="w-80 h-16 bg-secundaria justify-center items-center flex rounded-2xl">
               <Text className="color-white text-2xl font-bold text-center">PROSSEGUIR</Text>
             </TouchableOpacity>
           </View>
