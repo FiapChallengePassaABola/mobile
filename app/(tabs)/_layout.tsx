@@ -1,120 +1,106 @@
-import { View, Text, Image, ImageSourcePropType } from 'react-native'
-import React from 'react'
-import {Tabs} from 'expo-router'
+import { Tabs } from "expo-router";
+import React from "react";
+import { Image, ImageSourcePropType, View } from "react-native";
 
 type propsTab = {
-  focused: boolean,
-  icon: ImageSourcePropType
-}
+  focused: boolean;
+  icon: ImageSourcePropType;
+};
 
 export const icons = {
-  home: require('../../assets/icons/logo.png'),
-  profile: require('../../assets/icons/profile.png'),
-  workout: require('../../assets/icons/workout.png'),
-  config: require('../../assets/icons/config.png'),
-  addnew: require('../../assets/icons/addnew1.png'),
-  back: require('../../assets/icons/back.png'),
-  stack: require('../../assets/icons/stack.png'),
-  reps: require('../../assets/icons/reps.png'),
-  treino:{
-    finalizacao:{
-      icon1: require('../../assets/icons/treino/bolagol.png')
+  home: require("../../assets/icons/logo.png"),
+  profile: require("../../assets/icons/profile.png"),
+  workout: require("../../assets/icons/workout.png"),
+  config: require("../../assets/icons/config.png"),
+  addnew: require("../../assets/icons/addnew1.png"),
+  back: require("../../assets/icons/back.png"),
+  stack: require("../../assets/icons/stack.png"),
+  reps: require("../../assets/icons/reps.png"),
+  treino: {
+    finalizacao: {
+      icon1: require("../../assets/icons/treino/bolagol.png"),
     },
-    defesa:{
+    defesa: {},
+    goleiro: {},
+    conducao: {},
+    passe: {},
+  },
+};
 
-    },
-    goleiro:{
-
-    },
-    conducao:{
-
-    },
-    passe:{
-      
-    }
+const Tabicon = ({ focused, icon }: propsTab) => {
+  if (focused) {
+    return (
+      <View className="flex scale-150 bg-secundaria rounded-full w-16 h-16 items-center justify-center">
+        <Image source={icon} tintColor={"white"} className="size-12" />
+      </View>
+    );
+  } else {
+    return (
+      <View className="size-full justify-center items-center mt-4 rounded-full">
+        <Image source={icon} tintColor={"white"} className="size-12" />
+      </View>
+    );
   }
-}
-
-const Tabicon = ({focused, icon}:propsTab)=>{
-  if(focused){
-  return(
-    <View className='flex scale-150 bg-secundaria rounded-full w-16 h-16 items-center justify-center'>
-      <Image source={icon}
-        tintColor={'white'}
-        className='size-12'/>
-    </View>
-  )
-}else{
-  return(
-    <View className='size-full justify-center items-center mt-4 rounded-full'>
-      <Image source={icon}
-        tintColor={'white'}
-        className='size-12'/>
-    </View>
-  )
-}
-}
+};
 
 const _layout = () => {
   return (
     <Tabs
-    screenOptions={{
-      tabBarShowLabel: false,
-      tabBarItemStyle:{
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-      tabBarStyle:{
-        backgroundColor: '#118C65',
-        height: 105,
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute'
-      }
-    }}
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarItemStyle: {
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        tabBarStyle: {
+          backgroundColor: "#118C65",
+          height: 105,
+          justifyContent: "center",
+          alignItems: "center",
+          position: "absolute",
+        },
+      }}
     >
       <Tabs.Screen
-        name='profile'
+        name="profile"
         options={{
-          title:'Perfil',
+          title: "Perfil",
           headerShown: false,
-          tabBarIcon: ({focused})=>(
+          tabBarIcon: ({ focused }) => (
             <>
-              <Tabicon focused={focused} icon={icons.profile}/> 
+              <Tabicon focused={focused} icon={icons.profile} />
             </>
-          )
+          ),
         }}
       />
       <Tabs.Screen
-        name='home'
+        name="home"
         options={{
-          title:'Home',
+          title: "Home",
           headerShown: false,
-          tabBarIcon: ({focused})=>(
+          tabBarIcon: ({ focused }) => (
             <>
-              <Tabicon focused={focused} icon={icons.home} /> 
+              <Tabicon focused={focused} icon={icons.home} />
             </>
-          )
+          ),
         }}
       />
       <Tabs.Screen
-        name='workout'
+        name="workout"
         options={{
-          title:'Treino',
+          title: "Treino",
           headerShown: false,
-          tabBarIcon: ({focused})=>(
+          tabBarIcon: ({ focused }) => (
             <>
-              <Tabicon focused={focused} icon={icons.workout} /> 
+              <Tabicon focused={focused} icon={icons.workout} />
             </>
-          )
+          ),
         }}
       />
+    </Tabs>
+  );
+};
 
-
-    </Tabs>    
-  )
-}
-
-export default _layout
+export default _layout;

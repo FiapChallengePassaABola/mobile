@@ -18,6 +18,11 @@ export default function RootLayout() {
         headerShown: false
       }}
       /> 
+      <Stack.Screen name='addtreino'
+      options={{
+        headerShown: false
+      }}
+      /> 
     </Stack>
    
   )
