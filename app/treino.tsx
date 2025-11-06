@@ -28,8 +28,8 @@ const DisplayExer = ({
           />
         </View>
       </View>
-      <View className="justify-center items-center gap-2">
-        <Text className="color-white text-2xl font-medium">
+      <View className="justify-center items-center gap-2 w-[70%] ">
+        <Text className="color-white text-2xl font-medium w-full" numberOfLines={1} ellipsizeMode='tail'>
           {item.exercicios[exercicioAtual].titulo}
         </Text>
         <Text className="color-white text-4xl font-bold">
@@ -53,7 +53,7 @@ const RepsStack = ({
         <Text className="color-white text-2xl font-medium">Séries</Text>
         <View className="flex-row w-full items-center justify-center  gap-2">
           <Image source={icons.stack} />
-          <View className="w-16 h-12 bg-white items-center justify-center flex rounded-full">
+          <View className="w-20 h-12 bg-white items-center justify-center flex rounded-full">
             <Text className="color-gray-500 text-xl font-semibold">
               {item.exercicios[exercicioAtual].series}
             </Text>
@@ -64,7 +64,7 @@ const RepsStack = ({
         <Text className="color-white text-2xl font-medium">Repetições</Text>
         <View className="flex-row w-full items-center justify-center  gap-2">
           <Image source={icons.reps} />
-          <View className="w-16 h-12 bg-white items-center justify-center flex rounded-full">
+          <View className="w-20 h-12 bg-white items-center justify-center flex rounded-full">
             <Text className="color-gray-500 text-xl font-semibold">
               {item.exercicios[exercicioAtual].repeticoes}
             </Text>
@@ -90,7 +90,7 @@ const treino = () => {
           <ActionIcon
             icon={icons.back}
             onPress={() => setExercicioAtual(exercicioAtual - 1)}
-            style="w-screen flex items-start justify-center p-4"
+            style="w-screen flex items-start justify-center p-4" 
           />
           <View className="w-screen flex justify-center items-center gap-5">
             <Text className="color-white text-4xl font-semibold mt-5 w-[90%] text-center">
@@ -100,14 +100,14 @@ const treino = () => {
           </View>
           <DisplayExer item={item} exercicioAtual={exercicioAtual} />
           <View className="w-full items-center">
-            <View className="w-[80%] bg-white h-56 mt-5 rounded-2xl items-center p-4">
-              <Text className="w-full h-full text-start">
+            <View className="w-[80%] bg-white  min-h-20 mt-5 rounded-2xl items-center p-4">
+              <Text className="w-full text-start">
                 {item.exercicios[exercicioAtual].descricao}
               </Text>
             </View>
           </View>
           <RepsStack item={item} exercicioAtual={exercicioAtual} />
-          <View className="w-screen h-44 flex justify-center items-center">
+          <View className="w-screen h-44 flex justify-center items-center gap-10">
             <View className="w-full flex-row justify-center items-center gap-4">
               {Array.from({ length: exercicioAtual }).map((_, i) => (
                 <View key={i} className="bg-secundaria w-14 h-4 rounded-full" />
@@ -116,8 +116,8 @@ const treino = () => {
                 <View key={i} className="w-14 h-4 border-2 border-white rounded-full" />
               ))}
             </View>
-            <TouchableOpacity onPress={()=>setExercicioAtual(exercicioAtual+1)}>
-              <Text>Next</Text>
+            <TouchableOpacity onPress={()=>setExercicioAtual(exercicioAtual+1)} className="w-80 h-16 bg-secundaria justify-center items-center flex rounded-2xl">
+              <Text className="color-white text-2xl font-bold text-center">PROSSEGUIR</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
