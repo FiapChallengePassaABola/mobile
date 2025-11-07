@@ -1,6 +1,7 @@
 import { useNavigation } from "expo-router";
 import React, { useState } from "react";
 import {
+  Image,
   ScrollView,
   Text,
   TextInput,
@@ -25,12 +26,17 @@ const addtreino = () => {
   ]);
   const maxLenght = 150;
   const exercicios: exerciciosProps[] = [
-    { titulo: "pAO DE BAYAYA", descricao: "rsrssr", series: 4, repeticoes: 10 },
+    {
+      titulo: "Passe com cone",
+      descricao: "rsrssr",
+      series: 4,
+      repeticoes: 10,
+    },
   ];
   return (
     <BackgroundScreen>
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1, paddingBottom: 150 }}
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
         className="w-screen"
       >
         <ActionIcon
@@ -107,14 +113,10 @@ const addtreino = () => {
                   </Text>
 
                   <View className="bg-white rounded-2xl w-8 h-6 justify-center items-center">
-                    <Text className="font-medium">
-                      {exercicio.series}
-                    </Text>
+                    <Text className="font-medium">{exercicio.series}</Text>
                   </View>
                   <View className="bg-white rounded-2xl w-8 h-6 justify-center items-center">
-                    <Text className="font-medium">
-                      {exercicio.repeticoes}
-                    </Text>
+                    <Text className="font-medium">{exercicio.repeticoes}</Text>
                   </View>
 
                   <ActionIcon icon={icons.remove} onPress={() => 1 + 1} />
@@ -122,15 +124,20 @@ const addtreino = () => {
               );
             })}
             <View className="flex-row w-full justify-evenly items-center mt-5">
-              <TouchableOpacity className="flex-row">
-                <ActionIcon icon={icons.addnew} onPress={() => 1 + 1} />
-                <Text>Adicionar</Text>
+              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32">
+                <Image source={icons.addnew} className="size-5" />
+                <Text className="color-white font-bold">Adicionar</Text>
               </TouchableOpacity>
-              <TouchableOpacity className="flex-row">
-                <ActionIcon icon={icons.addnew} onPress={() => 1 + 1} />
-                <Text>Criar novo</Text>
+              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32">
+                <Image source={icons.addnew} className="size-5" />
+                <Text className="color-white font-bold">Criar novo</Text>
               </TouchableOpacity>
             </View>
+          </View>
+          <View className="w-full h-40 justify-center items-center">
+            <TouchableOpacity className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center">
+              <Text className="text-2xl color-white font-bold">PROSSEGUIR</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
