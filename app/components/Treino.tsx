@@ -7,7 +7,7 @@ import treino from '../treino'
 import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types'
 import { TypeRoot } from '../navigation/AppNavigator'
 
-type exerciciosProps ={
+export type exerciciosProps ={
   titulo:string,
   descricao: string,
   series: number,

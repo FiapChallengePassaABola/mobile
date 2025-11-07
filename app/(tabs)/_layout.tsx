@@ -17,6 +17,7 @@ export const icons = {
   stack: require("../../assets/icons/stack.png"),
   reps: require("../../assets/icons/reps.png"),
   dropbox: require("../../assets/icons/dropboxarrow.png"),
+  remove: require("../../assets/icons/remove.png"),
   treino: {
     finalizacao: {
       icon1: require("../../assets/icons/treino/bolagol.png"),

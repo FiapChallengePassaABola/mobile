@@ -1,7 +1,6 @@
 import { useNavigation } from "expo-router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  Animated,
   ScrollView,
   Text,
   TextInput,
@@ -11,88 +10,23 @@ import {
 import { icons } from "./(tabs)/_layout";
 import ActionIcon from "./components/ActionIcon";
 import BackgroundScreen from "./components/BackgroundScreen";
+import DropBox from "./components/DropBox";
+import { exerciciosProps } from "./components/Treino";
 import UnderScore from "./components/UnderScore";
-
-const DropBox = () => {
-  const [showCategory, setShowCategory] = useState(false);
-  const [category, setCategory] = useState([
-    "Finalização",
-    "Passe",
-    "Condução",
-  ]);
-  const [height] = useState(new Animated.Value(56)); // altura inicial
-
-  const moveItem = (from: number, to: number) => {
-    setCategory((prev) => {
-      const newArray = [...prev];
-      const [movedItem] = newArray.splice(from, 1);
-      newArray.splice(to, 0, movedItem);
-      return newArray;
-    });
-  };
-
-  useEffect(() => {
-    Animated.timing(height, {
-      toValue: showCategory ? 208 : 50, // 56 = h-14, 208 = h-52
-      duration: 200,
-      useNativeDriver: false,
-    }).start();
-  }, [showCategory]);
-
-  return (
-    <Animated.View
-      style={{ height }}
-      className={
-        showCategory
-          ? "w-full bg-primaria rounded-[1.5rem] overflow-hidden justify-start items-center py-5"
-          : "w-full bg-primaria rounded-[1.5rem] overflow-hidden justify-center items-center"
-      }
-    >
-      <View className="w-full flex-row justify-between items-center px-5 ">
-        <Text className="color-white text-2xl text-center">{category[0]}</Text>
-        <View
-          style={showCategory ? { transform: [{ rotate: "180deg" }] } : null}
-        >
-          <ActionIcon
-            icon={icons.dropbox}
-            onPress={() => {
-              setShowCategory(!showCategory);
-            }}
-          />
-        </View>
-      </View>
-      {showCategory && (
-        <View className="w-full flex justify-start items-center mt-4">
-          <UnderScore />
-          <View className="w-full h-full flex justify-evenly items-center">
-            <TouchableOpacity
-              className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center"
-              onPress={() => moveItem(1, 0)}
-            >
-              <Text className="color-white text-2xl font-bold">
-                {category[1]}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center"
-              onPress={() => moveItem(2, 0)}
-            >
-              <Text className="color-white text-2xl font-bold">
-                {category[2]}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
-    </Animated.View>
-  );
-};
 
 const addtreino = () => {
   const navigation = useNavigation();
   const [titulo, setTitulo] = useState("");
   const [desc, setDesc] = useState("");
+  const [category, setCategory] = useState([
+    "Finalização",
+    "Passe",
+    "Condução",
+  ]);
   const maxLenght = 150;
+  const exercicios: exerciciosProps[] = [
+    { titulo: "pAO DE BAYAYA", descricao: "rsrssr", series: 4, repeticoes: 10 },
+  ];
   return (
     <BackgroundScreen>
       <ScrollView
@@ -128,7 +62,7 @@ const addtreino = () => {
             <Text className="color-white text-2xl font-medium px-4">
               Categoria
             </Text>
-            <DropBox />
+            <DropBox category={category} setCategory={setCategory} />
           </View>
         </View>
         <View className="w-full flex justify-center items-center mt-5">
@@ -144,9 +78,43 @@ const addtreino = () => {
                 onChangeText={(desc) => setDesc(desc)}
                 multiline
               />
-              <Text style={{ position: "absolute", right: 15, bottom: 5, color:'gray'}}>
+              <Text
+                style={{
+                  position: "absolute",
+                  right: 15,
+                  bottom: 5,
+                  color: "gray",
+                }}
+              >
                 {desc.length}/{maxLenght}
               </Text>
+            </View>
+          </View>
+        </View>
+        <View className="w-full flex justify-center items-center mt-5 border">
+          <View className="w-[70%] gap-2 flex border justify-center">
+            <Text>Exercícios</Text>
+            {exercicios.map((exercicio, i) => {
+              return (
+                <View key={i} className="flex-row">
+                  <Text>{exercicio.titulo}</Text>
+
+                  <Text>{exercicio.series}</Text>
+                  <Text>{exercicio.repeticoes}</Text>
+
+                  <ActionIcon icon={icons.remove} onPress={() => 1 + 1} />
+                </View>
+              );
+            })}
+            <View className="flex-row w-full justify-evenly items-center border">
+              <TouchableOpacity>
+                <ActionIcon icon={icons.addnew} onPress={() => 1 + 1} />
+                <Text>Adicionar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <ActionIcon icon={icons.addnew} onPress={() => 1 + 1} />
+                <Text>Criar novo</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
