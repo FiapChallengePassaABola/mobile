@@ -1,6 +1,13 @@
 import { useNavigation } from "expo-router";
-import React, { useState } from "react";
-import { ScrollView, Text, TextInput, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  Animated,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { icons } from "./(tabs)/_layout";
 import ActionIcon from "./components/ActionIcon";
 import BackgroundScreen from "./components/BackgroundScreen";
@@ -8,18 +15,52 @@ import UnderScore from "./components/UnderScore";
 
 const DropBox = () => {
   const [showCategory, setShowCategory] = useState(false);
+  const [height] = useState(new Animated.Value(56)); // altura inicial
+
+  useEffect(() => {
+    Animated.timing(height, {
+      toValue: showCategory ? 208 : 50, // 56 = h-14, 208 = h-52
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [showCategory]);
+
   return (
-    <View className="w-full bg-primaria h-14 rounded-full flex-row justify-between items-center px-5 rotate-180">
-      <Text className="color-white text-2xl text-center">Finalização</Text>
-      <View style={showCategory?null:{transform:[{rotate:'180deg'}]}}>
-        <ActionIcon
-          icon={icons.dropbox}
-          onPress={() => {
-            setShowCategory(!showCategory);
-          }}
-        />
+    <Animated.View
+      style={{ height }}
+      className={
+        showCategory
+          ? "w-full bg-primaria rounded-[1.5rem] overflow-hidden justify-start items-center py-5"
+          : "w-full bg-primaria rounded-[1.5rem] overflow-hidden justify-center items-center"
+      }
+    >
+      <View className="w-full flex-row justify-between items-center px-5 ">
+        <Text className="color-white text-2xl text-center">Finalização</Text>
+        <View
+          style={showCategory ? { transform: [{ rotate: "180deg" }] } : null}
+        >
+          <ActionIcon
+            icon={icons.dropbox}
+            onPress={() => {
+              setShowCategory(!showCategory);
+            }}
+          />
+        </View>
       </View>
-    </View>
+      {showCategory && (
+        <View className="w-full flex justify-start items-center mt-4">
+          <UnderScore />
+          <View className="w-full h-full flex justify-evenly items-center">
+            <TouchableOpacity className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center">
+              <Text className="color-white text-2xl font-bold">Passe</Text>
+            </TouchableOpacity>
+            <TouchableOpacity className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center">
+              <Text className="color-white text-2xl font-bold">Condução</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+    </Animated.View>
   );
 };
 
@@ -58,7 +99,7 @@ const addtreino = () => {
             />
           </View>
         </View>
-        <View className="w-full h-36 flex justify-center items-center">
+        <View className="w-full flex justify-start items-center ">
           <View className="w-[70%] gap-2">
             <Text className="color-white text-2xl font-medium px-4">
               Categoria
