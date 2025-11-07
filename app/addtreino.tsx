@@ -67,13 +67,16 @@ const DropBox = () => {
           <View className="w-full h-full flex justify-evenly items-center">
             <TouchableOpacity
               className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center"
-              onPress={() => moveItem(1,0)}
+              onPress={() => moveItem(1, 0)}
             >
               <Text className="color-white text-2xl font-bold">
                 {category[1]}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center" onPress={()=>moveItem(2,0)}>
+            <TouchableOpacity
+              className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center"
+              onPress={() => moveItem(2, 0)}
+            >
               <Text className="color-white text-2xl font-bold">
                 {category[2]}
               </Text>
@@ -88,7 +91,8 @@ const DropBox = () => {
 const addtreino = () => {
   const navigation = useNavigation();
   const [titulo, setTitulo] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
+  const [desc, setDesc] = useState("");
+  const maxLenght = 150;
   return (
     <BackgroundScreen>
       <ScrollView
@@ -116,7 +120,6 @@ const addtreino = () => {
               maxLength={35}
               value={titulo}
               onChangeText={(titulo) => setTitulo(titulo)}
-              onFocus={() => setIsFocused(true)}
             />
           </View>
         </View>
@@ -126,6 +129,25 @@ const addtreino = () => {
               Categoria
             </Text>
             <DropBox />
+          </View>
+        </View>
+        <View className="w-full flex justify-center items-center mt-5">
+          <View className="w-[70%] gap-2">
+            <Text className="color-white text-2xl font-medium px-4">
+              Descrição
+            </Text>
+            <View className="w-full relative">
+              <TextInput
+                className="bg-white rounded-2xl min-h-20 w-full px-5 text-lg py-5"
+                maxLength={maxLenght}
+                value={desc}
+                onChangeText={(desc) => setDesc(desc)}
+                multiline
+              />
+              <Text style={{ position: "absolute", right: 15, bottom: 5, color:'gray'}}>
+                {desc.length}/{maxLenght}
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
