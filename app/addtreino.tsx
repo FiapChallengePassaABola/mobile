@@ -12,6 +12,7 @@ import { icons } from "./(tabs)/_layout";
 import ActionIcon from "./components/ActionIcon";
 import BackgroundScreen from "./components/BackgroundScreen";
 import DropBox from "./components/DropBox";
+import ModalExercise from "./components/ModalExercise";
 import { exerciciosProps } from "./components/Treino";
 import UnderScore from "./components/UnderScore";
 
@@ -19,22 +20,47 @@ const addtreino = () => {
   const navigation = useNavigation();
   const [titulo, setTitulo] = useState("");
   const [desc, setDesc] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const [category, setCategory] = useState([
     "Finalização",
     "Passe",
     "Condução",
   ]);
   const maxLenght = 150;
-  const exercicios: exerciciosProps[] = [
+  const [exercicios, setExercicios] = useState([
     {
       titulo: "Passe com cone",
       descricao: "rsrssr",
       series: 4,
       repeticoes: 10,
     },
-  ];
+    {
+      titulo: "VAMBORA TITIL",
+      descricao: "rsrssr",
+      series: 4,
+      repeticoes: 10,
+    },
+    {
+      titulo: "TO CANSADO",
+      descricao: "rsrssr",
+      series: 4,
+      repeticoes: 10,
+    },
+  ]);
+  const removeExercicio = (index: number) => {
+    setExercicios((prev) => prev.filter((_, i) => i !== index));
+  };
+  const addExercicio = (novoExercicio: exerciciosProps) => {
+    setExercicios(prev => [...prev, novoExercicio ]);
+  };
   return (
     <BackgroundScreen>
+      <ModalExercise
+        showModal={showModal}
+        setShowModal={setShowModal}
+        category={category[0]}
+        addExercicio={addExercicio}
+      />
       <ScrollView
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
         className="w-screen"
@@ -108,7 +134,7 @@ const addtreino = () => {
                   key={i}
                   className="w-full bg-primaria rounded-full h-12 items-center justify-around flex-row px-2"
                 >
-                  <Text className="color-white text-lg">
+                  <Text className="color-white text-lg w-36 overflow-hidden">
                     {exercicio.titulo}
                   </Text>
 
@@ -119,12 +145,18 @@ const addtreino = () => {
                     <Text className="font-medium">{exercicio.repeticoes}</Text>
                   </View>
 
-                  <ActionIcon icon={icons.remove} onPress={() => 1 + 1} />
+                  <ActionIcon
+                    icon={icons.remove}
+                    onPress={() => removeExercicio(i)}
+                  />
                 </View>
               );
             })}
             <View className="flex-row w-full justify-evenly items-center mt-5">
-              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32">
+              <TouchableOpacity
+                className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32"
+                onPress={() => setShowModal(!showModal)}
+              >
                 <Image source={icons.addnew} className="size-5" />
                 <Text className="color-white font-bold">Adicionar</Text>
               </TouchableOpacity>
