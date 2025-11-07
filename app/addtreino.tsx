@@ -91,27 +91,42 @@ const addtreino = () => {
             </View>
           </View>
         </View>
-        <View className="w-full flex justify-center items-center mt-5 border">
-          <View className="w-[70%] gap-2 flex border justify-center">
-            <Text>Exercícios</Text>
+        <View className="w-full flex justify-center items-center mt-5">
+          <View className="w-[70%] gap-2 flex  justify-center">
+            <Text className="color-white text-2xl font-medium px-4">
+              Exercícios
+            </Text>
             {exercicios.map((exercicio, i) => {
               return (
-                <View key={i} className="flex-row">
-                  <Text>{exercicio.titulo}</Text>
+                <View
+                  key={i}
+                  className="w-full bg-primaria rounded-full h-12 items-center justify-around flex-row px-2"
+                >
+                  <Text className="color-white text-lg">
+                    {exercicio.titulo}
+                  </Text>
 
-                  <Text>{exercicio.series}</Text>
-                  <Text>{exercicio.repeticoes}</Text>
+                  <View className="bg-white rounded-2xl w-8 h-6 justify-center items-center">
+                    <Text className="font-medium">
+                      {exercicio.series}
+                    </Text>
+                  </View>
+                  <View className="bg-white rounded-2xl w-8 h-6 justify-center items-center">
+                    <Text className="font-medium">
+                      {exercicio.repeticoes}
+                    </Text>
+                  </View>
 
                   <ActionIcon icon={icons.remove} onPress={() => 1 + 1} />
                 </View>
               );
             })}
-            <View className="flex-row w-full justify-evenly items-center border">
-              <TouchableOpacity>
+            <View className="flex-row w-full justify-evenly items-center mt-5">
+              <TouchableOpacity className="flex-row">
                 <ActionIcon icon={icons.addnew} onPress={() => 1 + 1} />
                 <Text>Adicionar</Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity className="flex-row">
                 <ActionIcon icon={icons.addnew} onPress={() => 1 + 1} />
                 <Text>Criar novo</Text>
               </TouchableOpacity>
