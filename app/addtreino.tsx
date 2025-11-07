@@ -15,7 +15,21 @@ import UnderScore from "./components/UnderScore";
 
 const DropBox = () => {
   const [showCategory, setShowCategory] = useState(false);
+  const [category, setCategory] = useState([
+    "Finalização",
+    "Passe",
+    "Condução",
+  ]);
   const [height] = useState(new Animated.Value(56)); // altura inicial
+
+  const moveItem = (from: number, to: number) => {
+    setCategory((prev) => {
+      const newArray = [...prev];
+      const [movedItem] = newArray.splice(from, 1);
+      newArray.splice(to, 0, movedItem);
+      return newArray;
+    });
+  };
 
   useEffect(() => {
     Animated.timing(height, {
@@ -35,7 +49,7 @@ const DropBox = () => {
       }
     >
       <View className="w-full flex-row justify-between items-center px-5 ">
-        <Text className="color-white text-2xl text-center">Finalização</Text>
+        <Text className="color-white text-2xl text-center">{category[0]}</Text>
         <View
           style={showCategory ? { transform: [{ rotate: "180deg" }] } : null}
         >
@@ -51,11 +65,18 @@ const DropBox = () => {
         <View className="w-full flex justify-start items-center mt-4">
           <UnderScore />
           <View className="w-full h-full flex justify-evenly items-center">
-            <TouchableOpacity className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center">
-              <Text className="color-white text-2xl font-bold">Passe</Text>
+            <TouchableOpacity
+              className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center"
+              onPress={() => moveItem(1,0)}
+            >
+              <Text className="color-white text-2xl font-bold">
+                {category[1]}
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center">
-              <Text className="color-white text-2xl font-bold">Condução</Text>
+            <TouchableOpacity className="h-[40px] rounded-full border-2 border-white w-[80%] bg-primaria/35 flex items-center justify-center" onPress={()=>moveItem(2,0)}>
+              <Text className="color-white text-2xl font-bold">
+                {category[2]}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
