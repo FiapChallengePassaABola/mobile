@@ -1,6 +1,7 @@
 import { useNavigation } from "expo-router";
 import React, { useState } from "react";
 import {
+  Alert,
   Image,
   ScrollView,
   Text,
@@ -33,7 +34,7 @@ const RepsStack = ({ series, setSeries, reps, setReps }: AddExercicioProps) => {
               maxLength={2}
               value={series}
               onChangeText={(series) => {
-                const numericValue = series.replace(/[^0-9]/g, '');
+                const numericValue = series.replace(/[^0-9]/g, "");
                 setSeries(numericValue);
               }}
               keyboardType="numeric"
@@ -51,7 +52,7 @@ const RepsStack = ({ series, setSeries, reps, setReps }: AddExercicioProps) => {
               maxLength={2}
               value={reps}
               onChangeText={(reps) => {
-                const numericValue = reps.replace(/[^0-9]/g, '');
+                const numericValue = reps.replace(/[^0-9]/g, "");
                 setReps(numericValue);
               }}
               keyboardType="numeric"
@@ -70,6 +71,8 @@ const addexercicio = () => {
   const [desc, setDesc] = useState("");
   const [series, setSeries] = useState("");
   const [reps, setReps] = useState("");
+  const isNotVerified =
+    titulo == "" || desc == "" || series == "" || reps == "";
   return (
     <BackgroundScreen>
       <ScrollView
@@ -135,7 +138,16 @@ const addexercicio = () => {
         />
         <View>
           <View className="w-full h-40 justify-center items-center">
-            <TouchableOpacity className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center ">
+            <TouchableOpacity
+              className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center"
+              onPress={() => {
+                if (isNotVerified) {
+                  Alert.alert('Não foi possível criar esse exercício. Preecha todos os campos corretamente')
+                  return
+                }
+                navigation.goBack()
+              }}
+            >
               <Text className="text-2xl color-white font-bold">PROSSEGUIR</Text>
             </TouchableOpacity>
           </View>
