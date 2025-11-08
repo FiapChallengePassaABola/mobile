@@ -13,15 +13,18 @@ import { icons } from "./(tabs)/_layout";
 import ActionIcon from "./components/ActionIcon";
 import BackgroundScreen from "./components/BackgroundScreen";
 import UnderScore from "./components/UnderScore";
+import { exerciciosProps } from "./components/Treino";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { TypeRoot } from "./navigation/AppNavigator";
 
-type AddExercicioProps = {
+type AddExercicioRepsStackProps = {
   series: string;
   setSeries: React.Dispatch<React.SetStateAction<string>>;
   reps: string;
   setReps: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const RepsStack = ({ series, setSeries, reps, setReps }: AddExercicioProps) => {
+const RepsStack = ({ series, setSeries, reps, setReps }: AddExercicioRepsStackProps) => {
   return (
     <View className="w-full flex items-center justify-center flex-row h-44  justiy-center">
       <View className="flex-1 items-center justify-center">
@@ -64,7 +67,10 @@ const RepsStack = ({ series, setSeries, reps, setReps }: AddExercicioProps) => {
   );
 };
 
+
 const addexercicio = () => {
+  const route = useRoute<RouteProp<TypeRoot, 'addexercicio'>>();
+  const { addExercicio } = route.params;
   const navigation = useNavigation();
   const maxLenght = 150;
   const [titulo, setTitulo] = useState("");
@@ -145,6 +151,15 @@ const addexercicio = () => {
                   Alert.alert('Não foi possível criar esse exercício. Preecha todos os campos corretamente')
                   return
                 }
+                const seriesInt = parseInt(series)
+                const repeticoesInt = parseInt(reps)
+                const exercicioCriado = {
+                  titulo,
+                  descricao: desc,
+                  repeticoes: repeticoesInt,
+                  series: seriesInt
+                }
+                addExercicio(exercicioCriado)
                 navigation.goBack()
               }}
             >

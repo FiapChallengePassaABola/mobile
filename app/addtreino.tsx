@@ -167,7 +167,7 @@ const addtreino = () => {
                 <Image source={icons.addnew} className="size-5" />
                 <Text className="color-white font-bold">Adicionar</Text>
               </TouchableOpacity>
-              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32" onPress={()=>navigation.navigate('addexercicio')}>
+              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32" onPress={()=>navigation.navigate('addexercicio',{addExercicio})}>
                 <Image source={icons.addnew} className="size-5" />
                 <Text className="color-white font-bold">Criar novo</Text>
               </TouchableOpacity>
