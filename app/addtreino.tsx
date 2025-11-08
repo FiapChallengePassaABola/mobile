@@ -1,6 +1,8 @@
+import { conducao, finalizacoes, passes } from "@/data/data";
 import { useNavigation } from "expo-router";
 import React, { useState } from "react";
 import {
+  Alert,
   Image,
   ScrollView,
   Text,
@@ -8,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 import { icons } from "./(tabs)/_layout";
 import ActionIcon from "./components/ActionIcon";
 import BackgroundScreen from "./components/BackgroundScreen";
@@ -16,11 +19,10 @@ import ModalExercise from "./components/ModalExercise";
 import { exerciciosProps } from "./components/Treino";
 import UnderScore from "./components/UnderScore";
 import { TypeRoot } from "./navigation/AppNavigator";
-import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 
 type AddExercicioScreenProp = NativeStackNavigationProp<
   TypeRoot,
-  'addexercicio'
+  "addexercicio"
 >;
 
 const addtreino = () => {
@@ -36,29 +38,18 @@ const addtreino = () => {
   const maxLenght = 150;
   const [exercicios, setExercicios] = useState([
     {
-      titulo: "Passe com cone",
-      descricao: "rsrssr",
-      series: 4,
-      repeticoes: 10,
-    },
-    {
-      titulo: "VAMBORA TITIL",
-      descricao: "rsrssr",
-      series: 4,
-      repeticoes: 10,
-    },
-    {
-      titulo: "TO CANSADO",
-      descricao: "rsrssr",
-      series: 4,
-      repeticoes: 10,
+      titulo: "Titulo do exercicio",
+      descricao: "Exercicio",
+      series: 0,
+      repeticoes: 0,
     },
   ]);
+  const isNotVerified = titulo == "" || desc == "" || exercicios.length == 0;
   const removeExercicio = (index: number) => {
     setExercicios((prev) => prev.filter((_, i) => i !== index));
   };
   const addExercicio = (novoExercicio: exerciciosProps) => {
-    setExercicios(prev => [...prev, novoExercicio ]);
+    setExercicios((prev) => [...prev, novoExercicio]);
   };
   return (
     <BackgroundScreen>
@@ -141,7 +132,11 @@ const addtreino = () => {
                   key={i}
                   className="w-full bg-primaria rounded-full h-12 items-center justify-around flex-row px-2"
                 >
-                  <Text className="color-white text-lg w-36" numberOfLines={1} ellipsizeMode="tail">
+                  <Text
+                    className="color-white text-lg w-36"
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                  >
                     {exercicio.titulo}
                   </Text>
 
@@ -167,14 +162,56 @@ const addtreino = () => {
                 <Image source={icons.addnew} className="size-5" />
                 <Text className="color-white font-bold">Adicionar</Text>
               </TouchableOpacity>
-              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32" onPress={()=>navigation.navigate('addexercicio',{addExercicio})}>
+              <TouchableOpacity
+                className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32"
+                onPress={() =>
+                  navigation.navigate("addexercicio", { addExercicio })
+                }
+              >
                 <Image source={icons.addnew} className="size-5" />
                 <Text className="color-white font-bold">Criar novo</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View className="w-full h-40 justify-center items-center">
-            <TouchableOpacity className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center ">
+            <TouchableOpacity
+              className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center "
+              onPress={() => {
+                if (isNotVerified) {
+                  Alert.alert(
+                    "Não é possível criar esse treino.",
+                    "Preenncha todos as informações para criar um treino."
+                  );
+                  return;
+                }
+                if (category[0] == "Finalização") {
+                  finalizacoes.push({
+                    titulo,
+                    descricao: desc,
+                    quantidadeExercicios: exercicios.length,
+                    tempoTotal: 40,
+                    exercicios,
+                  });
+                } else if (category[0] == "Condução") {
+                  conducao.push({
+                    titulo,
+                    descricao: desc,
+                    quantidadeExercicios: exercicios.length,
+                    tempoTotal: 40,
+                    exercicios,
+                  });
+                } else {
+                  passes.push({
+                    titulo,
+                    descricao: desc,
+                    quantidadeExercicios: exercicios.length,
+                    tempoTotal: 40,
+                    exercicios,
+                  });
+                }
+                navigation.goBack();
+              }}
+            >
               <Text className="text-2xl color-white font-bold">PROSSEGUIR</Text>
             </TouchableOpacity>
           </View>

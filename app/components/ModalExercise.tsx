@@ -50,7 +50,7 @@ const ModalExercise = ({
         className="w-screen filter bg-black/50 blur-3xl"
       >
         <View className="flex-1 justify-center items-center">
-          <View className="w-[70%] bg-primaria rounded-xl items-center p-2 pb-10 gap-5">
+          <View className="w-[80%] bg-primaria rounded-xl items-center p-2 pb-10 gap-5">
             <Text className="border-b-2 border-white color-white text-2xl font-bold">
               {category}
             </Text>

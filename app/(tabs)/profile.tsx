@@ -83,16 +83,16 @@ const profile = () => {
             <UnderScore />
             <View className="w-scrren flex-row justify-center items-center gap-10">
               <View className="w-20 h-20 bg-primaria rounded-full items-center justify-center">
-                <Image source={icons.workout} className="size-15"/>
+                <Image source={icons.health} className="size-15"/>
               </View>
               <View className="w-20 h-20 bg-primaria rounded-full items-center justify-center">
-                <Image source={icons.workout} className="size-15"/>
+                <Image source={icons.passabola} className="size-15"/>
               </View>
               <View className="w-20 h-20 bg-primaria rounded-full items-center justify-center">
-                <Image source={icons.workout} className="size-15"/>
+                <Image source={icons.flo} className="size-15"/>
               </View>
             </View>
-            <Text>https://www.npmjs.com/package/react-native-calendars</Text>
+            
           </View>
         </ScrollView>
       </SafeAreaView>

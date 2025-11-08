@@ -20,8 +20,8 @@ const DisplayExer = ({
   exercicioAtual: number;
 }) => {
   return (
-    <View className="flex-row justify-center items-center w-full h-52 border">
-      <View className="justify-center items-center h-44 w-[30%] border">
+    <View className="flex-row justify-center items-center w-full h-52 ">
+      <View className="justify-center items-center h-44 w-[30%] ">
         <View className="bg-secundaria size-[7rem] rounded-full justify-center items-center flex">
           <Image
             source={icons.treino.finalizacao.icon1}
@@ -29,8 +29,8 @@ const DisplayExer = ({
           />
         </View>
       </View>
-      <View className="justify-center items-center gap-2 w-[60%] h-44 border">
-        <Text className="color-white text-2xl font-medium text-center border w-[60%]" numberOfLines={1} ellipsizeMode='tail'>
+      <View className="justify-center items-center gap-2 w-[60%] h-44 ">
+        <Text className="color-white text-2xl font-medium text-center w-[100%]" numberOfLines={1} ellipsizeMode='tail'>
           {item.exercicios[exercicioAtual].titulo}
         </Text>
         <Text className="color-white text-4xl font-bold">

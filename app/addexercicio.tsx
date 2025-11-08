@@ -148,7 +148,7 @@ const addexercicio = () => {
               className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center"
               onPress={() => {
                 if (isNotVerified) {
-                  Alert.alert('Não foi possível criar esse exercício. Preecha todos os campos corretamente')
+                  Alert.alert('Não foi possível criar esse exercício.','Preecha todos os campos corretamente')
                   return
                 }
                 const seriesInt = parseInt(series)

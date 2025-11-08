@@ -18,6 +18,9 @@ export const icons = {
   reps: require("../../assets/icons/reps.png"),
   dropbox: require("../../assets/icons/dropboxarrow.png"),
   remove: require("../../assets/icons/remove.png"),
+  health: require('../../assets/icons/health.png'),
+  flo: require('../../assets/icons/flo.png'),
+  passabola: require('../../assets/icons/passabola.png'),
   treino: {
     finalizacao: {
       icon1: require("../../assets/icons/treino/bolagol.png"),
