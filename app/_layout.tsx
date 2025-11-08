@@ -23,6 +23,11 @@ export default function RootLayout() {
         headerShown: false
       }}
       /> 
+      <Stack.Screen name='addexercicio'
+      options={{
+        headerShown: false
+      }}
+      /> 
     </Stack>
    
   )

@@ -15,9 +15,16 @@ import DropBox from "./components/DropBox";
 import ModalExercise from "./components/ModalExercise";
 import { exerciciosProps } from "./components/Treino";
 import UnderScore from "./components/UnderScore";
+import { TypeRoot } from "./navigation/AppNavigator";
+import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+
+type AddExercicioScreenProp = NativeStackNavigationProp<
+  TypeRoot,
+  'addexercicio'
+>;
 
 const addtreino = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<AddExercicioScreenProp>();
   const [titulo, setTitulo] = useState("");
   const [desc, setDesc] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -134,7 +141,7 @@ const addtreino = () => {
                   key={i}
                   className="w-full bg-primaria rounded-full h-12 items-center justify-around flex-row px-2"
                 >
-                  <Text className="color-white text-lg w-36 overflow-hidden">
+                  <Text className="color-white text-lg w-36" numberOfLines={1} ellipsizeMode="tail">
                     {exercicio.titulo}
                   </Text>
 
@@ -160,14 +167,14 @@ const addtreino = () => {
                 <Image source={icons.addnew} className="size-5" />
                 <Text className="color-white font-bold">Adicionar</Text>
               </TouchableOpacity>
-              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32">
+              <TouchableOpacity className="flex-row justify-center items-center border border-white rounded-2xl gap-2 p-1 w-32" onPress={()=>navigation.navigate('addexercicio')}>
                 <Image source={icons.addnew} className="size-5" />
                 <Text className="color-white font-bold">Criar novo</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View className="w-full h-40 justify-center items-center">
-            <TouchableOpacity className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center">
+            <TouchableOpacity className="w-[60%] h-16 border-2 border-white rounded-xl justify-center items-center ">
               <Text className="text-2xl color-white font-bold">PROSSEGUIR</Text>
             </TouchableOpacity>
           </View>
